@@ -1,0 +1,41 @@
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="/"><img class="brand-mark" src="/assets/brand/mark-light.svg" width="44" height="44" alt="" /><span class="brand-text"><span class="brand-name">{{ site.name }}</span><span class="brand-tag">{{ site.full_name }}</span></span></a>
+        <p class="footer-motto">{{ site.tagline }}</p>
+        <address class="footer-contact">
+          <a href="{{ site.contact.map_link }}" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-pin"/></svg>{{ site.contact.address_line1 }}{% if site.contact.address_line2 %}, {{ site.contact.address_line2 }}{% endif %}</a>
+          <a href="tel:{{ site.contact.phone | replace(' ', '') }}"><svg width="18" height="18"><use href="#i-phone"/></svg>{{ site.contact.phone }}</a>
+          <a href="mailto:{{ site.contact.email }}"><svg width="18" height="18"><use href="#i-mail"/></svg>{{ site.contact.email }}</a>
+        </address>
+        <div class="social-row" aria-label="Social media">
+          {% for s in site.social %}<a href="{{ s.url }}" target="_blank" rel="noopener" aria-label="{{ site.name }} on {{ s.name }}" data-track="social:{{ s.key }}"><svg width="20" height="20"><use href="#i-{{ s.key }}"/></svg></a>{% endfor %}
+          {% if site.contact.whatsapp %}<a href="https://wa.me/{{ site.contact.whatsapp }}" target="_blank" rel="noopener" aria-label="Message {{ site.name }} on WhatsApp" data-track="social:whatsapp"><svg width="20" height="20"><use href="#i-whatsapp"/></svg></a>{% endif %}
+        </div>
+      </div>
+      {% for col in navigation.footer %}
+      <div class="footer-col">
+        <h2 class="footer-heading">{{ col.heading }}</h2>
+        <ul>{% for l in col.links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="footer-mid">
+      <div class="trust-row">
+        <span class="trust-badge"><svg width="18" height="18"><use href="#i-lock"/></svg>Secure site (HTTPS)</span>
+        <span class="trust-badge"><svg width="18" height="18"><use href="#i-verified"/></svg>{{ site.registration.entity_type }}{% if site.registration.registration_number %} · Reg. {{ site.registration.registration_number }}{% endif %}</span>
+        <span class="trust-badge"><svg width="18" height="18"><use href="#i-shield"/></svg>Donations processed by PCI-compliant partners</span>
+      </div>
+      <div class="visitor-counter" data-visitor-counter aria-live="polite">
+        <svg width="18" height="18"><use href="#i-globe"/></svg>
+        <span><strong data-visitor-count>{{ site.counters.visitors_baseline | number }}</strong> {{ site.counters.label_visitors }}</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© {% thisYear %} {{ site.full_name }}. All rights reserved.</p>
+      <ul class="legal-links">{% for l in navigation.legal %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}<li><a href="/admin/" rel="nofollow">Edit site</a></li></ul>
+      <a class="to-top" href="#top" aria-label="Back to top"><svg width="20" height="20"><use href="#i-arrow-up"/></svg></a>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,471 @@
+# Decap CMS configuration for the REINA website (GitHub Pages hosting).
+# Docs: https://decapcms.org/docs/configuration-options/
+#
+# Logging in: editors sign in with a GitHub account that has write access to the repo.
+# GitHub OAuth goes through Netlify's free OAuth relay. See README → "CMS logins" for the
+# one-time setup. Until that is done, run `npm run cms` locally and open http://localhost:8089/admin/
+# to edit without logging in (local_backend below).
+backend:
+  name: github
+  repo: amateurmenace/reina-site
+  branch: main
+  base_url: https://api.netlify.com
+  site_domain: reina-cms.netlify.app
+  auth_scope: public_repo
+  commit_messages:
+    create: "content: add {{collection}} “{{slug}}”"
+    update: "content: update {{collection}} “{{slug}}”"
+    delete: "content: delete {{collection}} “{{slug}}”"
+    uploadMedia: "media: add {{path}}"
+    deleteMedia: "media: delete {{path}}"
+
+local_backend: true
+
+# "simple" = Save publishes straight to the live site (after the 1–2 minute build).
+# Change to "editorial_workflow" to get Draft → In review → Ready with pull requests.
+publish_mode: simple
+
+media_folder: "src/assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+site_url: https://amateurmenace.github.io/reina-site
+display_url: https://amateurmenace.github.io/reina-site
+logo_url: https://amateurmenace.github.io/reina-site/assets/brand/wordmark.svg
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+  # ---------- Writing ----------
+  - name: news
+    label: "News and stories"
+    label_singular: "Post"
+    description: "Announcements, open calls, events, and stories. Listed at /news/ and the three newest appear on the home page."
+    folder: "src/news"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "news/{{slug}}/"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Kind", name: "kind", widget: "select", options: ["News", "Story", "Event", "Opportunity"], default: "News" }
+      - { label: "Author", name: "author", widget: "string", default: "REINA", required: false }
+      - { label: "Summary", name: "summary", widget: "text", hint: "One or two sentences. Shown in lists, search results, and social previews." }
+      - { label: "Topics", name: "topics", widget: "list", required: false, hint: "Short tags, e.g. Open call, Music, Harare." }
+      - { label: "Cover image", name: "image", widget: "image", required: false, hint: "Landscape, at least 1200 px wide. Also used as the social preview image." }
+      - { label: "Cover image alt text", name: "image_alt", widget: "string", required: false, hint: "Describe the image for screen readers." }
+      - { label: "Date as shown (optional)", name: "date_display", widget: "string", required: false, hint: "e.g. “12–14 June 2026”. Leave blank to show the date above." }
+      - { label: "Contact email for this story", name: "author_contact", widget: "string", required: false }
+      - { label: "Show on home page", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Sample content (shows a badge)", name: "sample", widget: "boolean", default: false, required: false }
+      - { label: "Draft (hidden from the site)", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ---------- Programs ----------
+  - name: programs
+    label: "Programs"
+    label_singular: "Program"
+    description: "Current, upcoming, and completed programs. Featured ones appear on the home page."
+    folder: "src/programs"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "programs/{{slug}}/"
+    sortable_fields: ["order", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Theme", name: "theme", widget: "select", options: ["Creative skills", "Wellbeing", "Leadership", "Livelihoods", "Platforms"], default: "Creative skills" }
+      - { label: "Status", name: "status", widget: "select", options: [{label: "Current", value: "current"}, {label: "Upcoming", value: "upcoming"}, {label: "Completed", value: "completed"}], default: "current" }
+      - { label: "Order", name: "order", widget: "number", default: 99, value_type: "int", hint: "Lower numbers appear first." }
+      - { label: "Show on home page", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Timeline", name: "timeline", widget: "string", required: false, hint: "e.g. “Feb to May 2026, cohort 4”" }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Participants", name: "participants", widget: "string", required: false, hint: "e.g. “24 per cohort, ages 16 to 28”" }
+      - { label: "Program lead (name or role)", name: "lead", widget: "string", required: false }
+      - { label: "Program lead email", name: "lead_contact", widget: "string", required: false }
+      - { label: "Partner organisations", name: "partners", widget: "list", required: false }
+      - { label: "Funding sources", name: "funders", widget: "list", required: false }
+      - label: "Milestones"
+        name: "milestones"
+        widget: "list"
+        required: false
+        summary: "{{fields.when}} — {{fields.what}}"
+        fields:
+          - { label: "When", name: "when", widget: "string" }
+          - { label: "What", name: "what", widget: "string" }
+          - { label: "Done", name: "done", widget: "boolean", default: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Image alt text", name: "image_alt", widget: "string", required: false }
+      - { label: "Draft (hidden from the site)", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Full description", name: "body", widget: "markdown" }
+
+  # ---------- People ----------
+  - name: team
+    label: "Team and board"
+    label_singular: "Person"
+    description: "Board of directors, leadership, and team. Shown at /team/; leaders also appear on About and Contact."
+    folder: "src/team"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    sortable_fields: ["order", "name"]
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Group", name: "group", widget: "select", options: ["Board of directors", "Leadership", "Team"], default: "Team" }
+      - { label: "Order", name: "order", widget: "number", default: 99, value_type: "int" }
+      - { label: "One-line summary", name: "summary", widget: "text" }
+      - { label: "Photo (square)", name: "photo", widget: "image", required: false }
+      - { label: "Email", name: "email", widget: "string", required: false }
+      - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+      - { label: "Show on the Contact page as a direct contact", name: "contactable", widget: "boolean", default: false, required: false }
+      - { label: "Sample profile (shows a badge)", name: "sample", widget: "boolean", default: false, required: false }
+      - { label: "Draft (hidden from the site)", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Background", name: "body", widget: "markdown", required: false, hint: "Qualifications and experience. Shown under “Background”." }
+
+  # ---------- Documents ----------
+  - name: reports
+    label: "Reports and documents"
+    label_singular: "Document"
+    description: "Annual reports, financial statements, and policies. Listed on Transparency and Impact."
+    folder: "src/reports"
+    create: true
+    slug: "{{slug}}"
+    media_folder: "/src/assets/docs"
+    public_folder: "/assets/docs"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Kind", name: "kind", widget: "select", options: ["Annual report", "Financial statements", "Policy", "Evaluation", "Other"], default: "Annual report" }
+      - { label: "Period", name: "period", widget: "string", hint: "e.g. “January to December 2025”" }
+      - { label: "Date published", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "File (PDF)", name: "file", widget: "file" }
+      - { label: "Summary", name: "summary", widget: "string", required: false }
+      - { label: "Sample (placeholder file)", name: "sample", widget: "boolean", default: false, required: false }
+      - { label: "Draft (hidden from the site)", name: "draft", widget: "boolean", default: false, required: false }
+
+  # ---------- Mentions ----------
+  - name: mentions
+    label: "Mentions and press"
+    label_singular: "Mention"
+    description: "Press coverage, partner features, and notable social mentions. Listed at /mentions/."
+    folder: "src/mentions"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Outlet or account", name: "outlet", widget: "string" }
+      - { label: "Kind", name: "kind", widget: "select", options: ["Press", "Radio", "TV", "Partner feature", "Funder feature", "Social mention", "Podcast"], default: "Press" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Link", name: "url", widget: "string", required: false }
+      - { label: "Sample", name: "sample", widget: "boolean", default: false, required: false }
+      - { label: "Draft (hidden from the site)", name: "draft", widget: "boolean", default: false, required: false }
+
+  # ---------- Short links ----------
+  - name: links
+    label: "Short links (go/)"
+    label_singular: "Short link"
+    description: "Trackable short links for bios, posts, and posters, e.g. /go/instagram/. Each redirects to a page with campaign tags attached so analytics shows where visitors came from."
+    folder: "src/links"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: label
+    fields:
+      - { label: "Label", name: "label", widget: "string", hint: "Where you will use it, e.g. “Instagram bio link”. The file name becomes the link: /go/<name>/." }
+      - { label: "Destination", name: "destination", widget: "string", default: "/", hint: "A page on this site like /donate/ or a full URL." }
+      - { label: "Source", name: "source", widget: "string", default: "instagram", hint: "utm_source, e.g. instagram, facebook, partner-name" }
+      - { label: "Medium", name: "medium", widget: "string", default: "social", hint: "utm_medium, e.g. social, email, qr, referral" }
+      - { label: "Campaign", name: "campaign", widget: "string", required: false, hint: "utm_campaign, e.g. bio, open-call-2026" }
+
+  # ---------- Site settings ----------
+  - name: settings
+    label: "Site settings"
+    description: "Contact details, social links, analytics, donation gateways, counters, and home page text."
+    files:
+      - name: site
+        label: "Organisation, contact, social, analytics, donations"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Short name", name: "name", widget: "string" }
+          - { label: "Full name", name: "full_name", widget: "string" }
+          - { label: "Motto", name: "tagline", widget: "string" }
+          - { label: "Description (search engines and social previews)", name: "description", widget: "text" }
+          - { label: "Locale", name: "locale", widget: "hidden", default: "en_ZW" }
+          - { label: "Country", name: "country", widget: "string" }
+          - { label: "City", name: "city", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Address line 1", name: "address_line1", widget: "string" }
+              - { label: "Address line 2", name: "address_line2", widget: "string", required: false }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "WhatsApp number (digits only, with country code)", name: "whatsapp", widget: "string", required: false }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Hours", name: "hours", widget: "string", required: false }
+              - { label: "Map embed URL", name: "map_embed", widget: "string", required: false, hint: "OpenStreetMap or Google Maps embed URL." }
+              - { label: "Map link", name: "map_link", widget: "string", required: false }
+          - label: "Social media"
+            name: "social"
+            widget: "list"
+            summary: "{{fields.name}}: {{fields.url}}"
+            fields:
+              - { label: "Platform", name: "name", widget: "string" }
+              - { label: "Icon key", name: "key", widget: "select", options: ["instagram", "facebook", "x", "linkedin", "youtube", "tiktok", "whatsapp"] }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Handle", name: "handle", widget: "string", required: false }
+          - label: "Registration and compliance"
+            name: "registration"
+            widget: "object"
+            fields:
+              - { label: "Legal name", name: "legal_name", widget: "string" }
+              - { label: "Entity type", name: "entity_type", widget: "string" }
+              - { label: "Registration number", name: "registration_number", widget: "string", required: false }
+              - { label: "Registered with", name: "registered_with", widget: "string", required: false }
+              - { label: "Tax status", name: "tax_status", widget: "string", required: false }
+              - { label: "Year founded", name: "year_founded", widget: "string", required: false }
+              - { label: "Note", name: "note", widget: "text", required: false }
+          - label: "Analytics"
+            name: "analytics"
+            widget: "object"
+            fields:
+              - { label: "Google Analytics 4 measurement ID", name: "ga4_id", widget: "string", required: false, hint: "G-XXXXXXXXXX. Leave blank to disable." }
+              - { label: "Plausible domain", name: "plausible_domain", widget: "string", required: false, hint: "Cookieless analytics. e.g. reina.org.zw" }
+              - { label: "GoatCounter code", name: "goatcounter_code", widget: "string", required: false, hint: "Free, privacy-friendly, and powers the public visitor counter. The part before .goatcounter.com." }
+          - label: "Forms"
+            name: "forms"
+            widget: "object"
+            fields:
+              - { label: "Contact form endpoint", name: "contact_endpoint", widget: "string", required: false, hint: "e.g. a Formspree or Basin URL. Blank = opens the visitor's email app instead." }
+              - { label: "Newsletter endpoint", name: "newsletter_endpoint", widget: "string", required: false }
+              - { label: "Get involved form endpoint", name: "volunteer_endpoint", widget: "string", required: false }
+          - label: "Counters"
+            name: "counters"
+            widget: "object"
+            fields:
+              - { label: "Visitor baseline", name: "visitors_baseline", widget: "number", value_type: "int", hint: "Shown when no analytics counter is connected; otherwise added to the live count." }
+              - { label: "Visitor label", name: "label_visitors", widget: "string", default: "visitors so far" }
+              - { label: "Shares baseline", name: "shares", widget: "number", value_type: "int" }
+              - { label: "Downloads baseline", name: "downloads", widget: "number", value_type: "int" }
+              - { label: "Sign-ups baseline", name: "signups", widget: "number", value_type: "int" }
+              - { label: "Comments baseline", name: "comments", widget: "number", value_type: "int" }
+              - { label: "These are sample numbers (shows a note)", name: "sample", widget: "boolean", default: false }
+          - label: "Community feed"
+            name: "social_feed"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "Instagram post URLs", name: "instagram_posts", widget: "list", required: false, hint: "Paste public post links. When set, these embed live instead of the gallery below." }
+              - label: "Gallery (used when no Instagram posts are set)"
+                name: "gallery"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Image", name: "image", widget: "image" }
+                  - { label: "Alt text", name: "alt", widget: "string" }
+                  - { label: "Caption", name: "caption", widget: "string", required: false }
+          - label: "Newsletter"
+            name: "newsletter"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Donations"
+            name: "donate"
+            widget: "object"
+            fields:
+              - { label: "Stripe Payment Link (one-time)", name: "stripe_onetime_url", widget: "string", required: false }
+              - { label: "Stripe Payment Link (monthly)", name: "stripe_monthly_url", widget: "string", required: false }
+              - { label: "PayPal.me name", name: "paypal_me", widget: "string", required: false, hint: "Just the name after paypal.me/" }
+              - { label: "Paynow link", name: "paynow_url", widget: "string", required: false, hint: "Paynow (Zimbabwe) payment page URL for EcoCash, OneMoney, and cards." }
+              - { label: "Mobile money provider", name: "mobile_money_name", widget: "string", required: false, hint: "e.g. EcoCash" }
+              - { label: "Mobile money number", name: "mobile_money_number", widget: "string", required: false }
+              - { label: "Bank name", name: "bank_name", widget: "string", required: false }
+              - { label: "Bank account name", name: "bank_account_name", widget: "string", required: false }
+              - { label: "Bank account number", name: "bank_account_number", widget: "string", required: false }
+              - { label: "Bank branch", name: "bank_branch", widget: "string", required: false }
+              - { label: "SWIFT", name: "bank_swift", widget: "string", required: false }
+              - { label: "Currency code", name: "currency", widget: "string", default: "USD" }
+              - { label: "One-time amounts", name: "one_time_amounts", widget: "list", field: { label: "Amount", name: "amount", widget: "number", value_type: "int" } }
+              - { label: "Monthly amounts", name: "monthly_amounts", widget: "list", field: { label: "Amount", name: "amount", widget: "number", value_type: "int" } }
+              - label: "Impact lines"
+                name: "impact_lines"
+                widget: "list"
+                fields:
+                  - { label: "Amount", name: "amount", widget: "number", value_type: "int" }
+                  - { label: "Text", name: "text", widget: "string", hint: "Completes the sentence “$25 …”" }
+              - label: "Allocation of funds"
+                name: "allocation"
+                widget: "list"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Percent", name: "pct", widget: "number", value_type: "int" }
+                  - { label: "Colour", name: "color", widget: "select", options: ["var(--flame)", "var(--sun)", "var(--jac)", "var(--river)", "var(--leaf)"] }
+      - name: home
+        label: "Home page"
+        file: "src/_data/home.json"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline line 1", name: "headline_a", widget: "string" }
+              - { label: "Headline line 2 (highlighted)", name: "headline_b", widget: "string" }
+              - { label: "Sub-headline", name: "sub", widget: "text" }
+              - { label: "Primary button", name: "cta_primary", widget: "object", fields: [{ label: "Label", name: "label", widget: "string" }, { label: "URL", name: "url", widget: "string" }] }
+              - { label: "Secondary button", name: "cta_secondary", widget: "object", fields: [{ label: "Label", name: "label", widget: "string" }, { label: "URL", name: "url", widget: "string" }] }
+              - { label: "Text link", name: "cta_tertiary", widget: "object", fields: [{ label: "Label", name: "label", widget: "string" }, { label: "URL", name: "url", widget: "string" }] }
+          - { label: "Pillars heading", name: "pillars_heading", widget: "string" }
+          - { label: "Pillars intro", name: "pillars_intro", widget: "string" }
+          - label: "Pillars"
+            name: "pillars"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "select", options: ["stage", "heart", "compass", "spark", "hands", "rise", "circle", "bolt", "globe"] }
+              - { label: "URL", name: "url", widget: "string" }
+          - label: "Call-to-action band"
+            name: "cta_band"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - label: "Buttons"
+                name: "buttons"
+                widget: "list"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+                  - { label: "Style", name: "style", widget: "select", options: ["primary", "light", "ghost-light"] }
+      - name: about
+        label: "About: mission, vision, values, objectives"
+        file: "src/_data/about.json"
+        fields:
+          - { label: "About us", name: "about", widget: "text" }
+          - { label: "Mission", name: "mission", widget: "text" }
+          - { label: "Vision", name: "vision", widget: "text" }
+          - { label: "Motto", name: "motto", widget: "string" }
+          - label: "Core values"
+            name: "values"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Icon", name: "icon", widget: "select", options: ["spark", "hands", "rise", "circle", "bolt", "heart", "compass", "globe", "stage"] }
+              - { label: "Short line", name: "short", widget: "string" }
+              - { label: "What it means in practice", name: "text", widget: "text" }
+          - { label: "Aims", name: "aims", widget: "list" }
+          - label: "Objectives"
+            name: "objectives"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Theory of change"
+            name: "theory_of_change"
+            widget: "list"
+            fields:
+              - { label: "Stage", name: "stage", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Items", name: "items", widget: "list" }
+          - { label: "Our story (paragraphs)", name: "story", widget: "list" }
+      - name: impact
+        label: "Impact metrics"
+        file: "src/_data/impact.json"
+        fields:
+          - { label: "These are sample figures (shows a note)", name: "sample", widget: "boolean", default: false }
+          - { label: "Intro", name: "intro", widget: "text" }
+          - label: "Headline metrics"
+            name: "headline_metrics"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "number", value_type: "int" }
+              - { label: "Suffix", name: "suffix", widget: "string", required: false, hint: "e.g. + or %" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Note", name: "note", widget: "string", required: false }
+          - label: "Outcome metrics"
+            name: "outcome_metrics"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Value", name: "value", widget: "number", value_type: "int" }
+              - { label: "Max", name: "max", widget: "number", value_type: "int", default: 100 }
+              - { label: "Unit", name: "unit", widget: "string", required: false, default: "%" }
+          - label: "Reach by year"
+            name: "reach_by_year"
+            widget: "list"
+            fields:
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Young people reached", name: "value", widget: "number", value_type: "int" }
+          - label: "Referral sources (%)"
+            name: "referral_sources"
+            widget: "list"
+            fields:
+              - { label: "Source", name: "source", widget: "string" }
+              - { label: "Percent", name: "pct", widget: "number", value_type: "int" }
+          - label: "Stories"
+            name: "stories"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Tag", name: "tag", widget: "string" }
+      - name: testimonials
+        label: "Testimonials"
+        file: "src/_data/testimonials.json"
+        fields:
+          - label: "Quotes"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+              - { label: "Sample", name: "sample", widget: "boolean", default: false, required: false }
+      - name: partners
+        label: "Partners"
+        file: "src/_data/partners.json"
+        fields:
+          - { label: "Intro", name: "intro", widget: "text" }
+          - { label: "These are sample partners (shows a note)", name: "sample", widget: "boolean", default: false }
+          - label: "Partners"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Kind", name: "kind", widget: "string", hint: "e.g. Funding partner" }
+              - { label: "Logo", name: "logo", widget: "image", required: false }
+              - { label: "URL", name: "url", widget: "string", required: false }
+      - name: faq
+        label: "FAQ"
+        file: "src/_data/faq.json"
+        fields:
+          - label: "Questions"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "q", widget: "string" }
+              - { label: "Answer", name: "a", widget: "text" }
+      - name: navigation
+        label: "Navigation"
+        file: "src/_data/navigation.json"
+        fields:
+          - label: "Main menu"
+            name: "primary"
+            widget: "list"
+            fields: [{ label: "Label", name: "label", widget: "string" }, { label: "URL", name: "url", widget: "string" }]
+          - label: "Footer columns"
+            name: "footer"
+            widget: "list"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Links", name: "links", widget: "list", fields: [{ label: "Label", name: "label", widget: "string" }, { label: "URL", name: "url", widget: "string" }] }
+          - label: "Legal links"
+            name: "legal"
+            widget: "list"
+            fields: [{ label: "Label", name: "label", widget: "string" }, { label: "URL", name: "url", widget: "string" }]

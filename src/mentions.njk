@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+title: "Mentions and press"
+description: "Where REINA has been featured, tagged, or linked: press coverage, partner features, and social mentions, all routed back here."
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Mentions and press</p>
+    <h1 class="h-display">Where people are talking about REINA.</h1>
+    <p class="lead">Coverage, partner features, and notable social mentions. Journalists and partners: contact details are on the <a href="/contact/">contact page</a>.</p>
+  </div>
+</section>
+<section class="section-tight"><div class="container">
+  {% if collections.mentions.length %}
+  <div class="doc-list reveal-stagger">
+    {% for m in collections.mentions %}
+    <div class="mention"><span class="avatar" style="background:var(--{{ ['flame','sun','jac','river'][loop.index0 % 4] }}-soft)">{{ m.data.outlet | initials }}</span><div><strong>{{ m.data.title }}</strong><span>{{ m.data.outlet }} · {{ m.data.kind }} · {{ m.date | readableDate("LLL yyyy") }}{% if m.data.sample %} · <em>sample</em>{% endif %}</span></div>{% if m.data.url %}<a class="link-arrow" href="{{ m.data.url }}" target="_blank" rel="noopener">Open<svg width="16" height="16"><use href="#i-external"/></svg></a>{% endif %}</div>
+    {% endfor %}
+  </div>
+  {% else %}<p class="empty-state">No mentions published yet.</p>{% endif %}
+</div></section>
+<section class="section section-tint"><div class="container grid grid-2">
+  <div class="reveal"><p class="eyebrow">Tag us</p><h2>Mention REINA and we will find it.</h2><p>Use <strong>@reina_zw</strong> and <strong>#REINAzw</strong> on any platform. We track mentions and route the best ones here and to our channels.</p><div class="social-row">{% for s in site.social %}<a href="{{ s.url }}" target="_blank" rel="noopener" aria-label="{{ s.name }}"><svg width="20" height="20"><use href="#i-{{ s.key }}"/></svg></a>{% endfor %}</div></div>
+  <div class="reveal"><p class="eyebrow">Link to us</p><h2>Short links for bios and posts.</h2><p>Each short link carries campaign tags, so we can see which platform sent visitors.</p>
+    <table class="go-table"><thead><tr><th>Short link</th><th>Goes to</th></tr></thead><tbody>{% for l in collections.links %}<tr><td><code>{{ l.url | absolute }}</code></td><td>{{ l.data.label }}</td></tr>{% endfor %}</tbody></table></div>
+</div></section>

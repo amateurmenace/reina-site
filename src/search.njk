@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+title: "Search"
+description: "Search REINA's programs, news, people, and documents."
+nosearch: true
+bodyClass: "search-page"
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Search</p>
+    <h1 class="h-display">Find it fast.</h1>
+    <form class="form" role="search" onsubmit="return false" style="max-width:620px">
+      <div class="input-row"><input type="search" name="q" placeholder="Programs, news, people, reports…" aria-label="Search" data-search-page-input autofocus /></div>
+      <p class="small muted" data-search-count aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+<section class="section-tight"><div class="container container-narrow"><ul class="search-results" data-search-page-results></ul></div></section>

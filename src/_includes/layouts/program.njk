@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+---
+<article class="program">
+  <header class="page-hero page-hero-split">
+    <div class="container split">
+      <div>
+        <p class="eyebrow"><a href="/programs/">Programs</a> · {{ theme }} · <span class="status-pill status-{{ status }}">{{ 'Current' if status == 'current' else ('Upcoming' if status == 'upcoming' else 'Completed') }}</span></p>
+        <h1 class="h-display">{{ title }}</h1>
+        <p class="lead">{{ summary }}</p>
+        <div class="btn-row">
+          {% if status != 'completed' %}<a class="btn btn-primary" href="/get-involved/?program={{ title | slug2 }}">Join or support this program</a>{% endif %}
+          <a class="btn btn-secondary" href="/contact/">Talk to the lead</a>
+        </div>
+      </div>
+      <div class="split-media"><img src="{{ image or ('/assets/img/art/program-' ~ ((title | hue) % 6 + 1) ~ '.svg') }}" alt="{{ image_alt or '' }}" width="800" height="600" /></div>
+    </div>
+  </header>
+  <div class="section">
+    <div class="container program-grid">
+      <div class="prose">{{ content | safe }}</div>
+      <aside class="program-facts">
+        <div class="fact-card">
+          <h2 class="h6">At a glance</h2>
+          <dl>
+            {% if timeline %}<div><dt>Timeline</dt><dd>{{ timeline }}</dd></div>{% endif %}
+            {% if location %}<div><dt>Location</dt><dd>{{ location }}</dd></div>{% endif %}
+            {% if participants %}<div><dt>Participants</dt><dd>{{ participants }}</dd></div>{% endif %}
+            {% if lead %}<div><dt>Program lead</dt><dd>{{ lead }}{% if lead_contact %}<br><a href="mailto:{{ lead_contact }}">{{ lead_contact }}</a>{% endif %}</dd></div>{% endif %}
+          </dl>
+        </div>
+        {% if partners and partners.length %}<div class="fact-card"><h2 class="h6">Partners</h2><ul class="plain-list">{% for pt in partners %}<li>{{ pt }}</li>{% endfor %}</ul></div>{% endif %}
+        {% if funders and funders.length %}<div class="fact-card"><h2 class="h6">Funding</h2><ul class="plain-list">{% for f in funders %}<li>{{ f }}</li>{% endfor %}</ul></div>{% endif %}
+        {% if milestones and milestones.length %}
+        <div class="fact-card"><h2 class="h6">Milestones</h2>
+          <ol class="timeline">{% for m in milestones %}<li class="{{ 'is-done' if m.done }}"><span class="tl-dot"></span><span class="tl-when">{{ m.when }}</span><span class="tl-what">{{ m.what }}</span></li>{% endfor %}</ol>
+        </div>
+        {% endif %}
+        {% include "partials/share.njk" %}
+      </aside>
+    </div>
+  </div>
+  {% set others = collections.programs | whereNot("title", title) | limit(3) %}
+  {% if others.length %}
+  <section class="section section-tint"><div class="container">
+    <div class="section-head"><h2>Other programs</h2><a class="link-arrow" href="/programs/">All programs<svg width="18" height="18"><use href="#i-arrow"/></svg></a></div>
+    <div class="grid grid-3">{% for p in others %}{% include "partials/program-card.njk" %}{% endfor %}</div>
+  </div></section>
+  {% endif %}
+</article>

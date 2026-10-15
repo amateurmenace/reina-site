@@ -1,0 +1,17 @@
+<div class="newsletter reveal">
+  <div>
+    <p class="eyebrow">Newsletter</p>
+    <h2>{{ site.newsletter.heading }}</h2>
+    <p>{{ site.newsletter.text }}</p>
+  </div>
+  <form class="form" data-form="newsletter" data-email="{{ site.contact.email }}" data-subject="Newsletter sign-up" data-success="You're on the list. Welcome to REINA." novalidate>
+    <input type="hidden" name="source" value="" /><input type="hidden" name="campaign" value="" />
+    <input class="honey" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <div class="input-row">
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required />
+      <button class="btn btn-primary" type="submit">Subscribe<svg><use href="#i-send"/></svg></button>
+    </div>
+    <p class="form-status" data-form-status></p>
+    <p class="small muted" style="margin:0">By subscribing you agree to our <a href="/privacy/">privacy policy</a>.</p>
+  </form>
+</div>

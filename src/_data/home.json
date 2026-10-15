@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "eyebrow": "Youth-led · Zimbabwe",
+    "headline_a": "Unleash potential.",
+    "headline_b": "Inspire change.",
+    "sub": "REINA is a youth-led organization in Zimbabwe building inclusive spaces where young people turn creativity and innovation into skills, livelihoods, and real community change.",
+    "cta_primary": { "label": "Get involved", "url": "/get-involved/" },
+    "cta_secondary": { "label": "Support our work", "url": "/donate/" },
+    "cta_tertiary": { "label": "See the programs", "url": "/programs/" }
+  },
+  "pillars_heading": "What we do",
+  "pillars_intro": "Three objectives, one idea: creativity is a resource for development.",
+  "pillars": [
+    { "title": "Platforms for expression", "text": "Labs, studios, showcases, and open calls where young people make work, build portfolios, and find an audience.", "icon": "stage", "url": "/programs/#expression" },
+    { "title": "Creativity as care", "text": "Creative and cultural initiatives used as tools for psychosocial support, belonging, and community healing.", "icon": "heart", "url": "/programs/#wellbeing" },
+    { "title": "Leaders for tomorrow", "text": "An incubator that grows ethical, innovative, socially conscious young leaders who drive sustainable development.", "icon": "compass", "url": "/programs/#leadership" }
+  ],
+  "cta_band": {
+    "heading": "Creativity is the resource. You are the multiplier.",
+    "text": "Volunteer a skill, fund a lab, or open a door for a young creative. Every route leads to the same place: young people shaping their own future.",
+    "buttons": [
+      { "label": "Donate", "url": "/donate/", "style": "primary" },
+      { "label": "Volunteer", "url": "/get-involved/#volunteer", "style": "light" },
+      { "label": "Partner with us", "url": "/get-involved/#partner", "style": "ghost-light" }
+    ]
+  }
+}

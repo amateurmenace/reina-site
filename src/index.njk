@@ -1,0 +1,183 @@
+---
+layout: layouts/base.njk
+title: ""
+description: "REINA is a youth-led organization in Zimbabwe building inclusive spaces where young people turn creativity and innovation into skills, livelihoods, and real community change."
+bodyClass: "home"
+scripts: ["/assets/js/hero.js"]
+---
+{% set hero = home.hero %}
+<section class="hero" aria-label="Introduction">
+  <canvas class="hero-canvas" data-hero-canvas aria-hidden="true"></canvas>
+  <div class="hero-glow g1"></div><div class="hero-glow g2"></div><div class="hero-glow g3"></div>
+  <div class="container">
+    <div>
+      <p class="eyebrow">{{ hero.eyebrow }}</p>
+      <h1><span class="line"><span>{{ hero.headline_a }}</span></span><span class="line"><span class="accent">{{ hero.headline_b }}</span></span></h1>
+      <p class="lead">{{ hero.sub }}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href="{{ hero.cta_primary.url }}" data-track="cta:hero_primary">{{ hero.cta_primary.label }}<svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost-light btn-lg" href="{{ hero.cta_secondary.url }}" data-track="cta:hero_secondary">{{ hero.cta_secondary.label }}</a>
+        <a class="link-arrow" style="color:#fff" href="{{ hero.cta_tertiary.url }}">{{ hero.cta_tertiary.label }}<svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 520 520" fill="none">
+        <defs>
+          <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffc53d"/><stop offset="1" stop-color="#ff5a1f"/></linearGradient>
+          <linearGradient id="hg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a5af8"/><stop offset="1" stop-color="#0fa3a3"/></linearGradient>
+          <radialGradient id="hg3"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+        </defs>
+        <g class="orbit"><circle cx="260" cy="260" r="230" stroke="rgba(255,255,255,.18)" stroke-dasharray="4 10"/><circle cx="490" cy="260" r="9" fill="#ffc53d"/><circle cx="30" cy="260" r="6" fill="#0fa3a3"/></g>
+        <g class="orbit orbit-r"><circle cx="260" cy="260" r="165" stroke="rgba(255,255,255,.14)"/><circle cx="260" cy="95" r="7" fill="#7a5af8"/><circle cx="260" cy="425" r="5" fill="#ff5a1f"/></g>
+        <g class="float"><path d="M260 70 L300 220 L450 260 L300 300 L260 450 L220 300 L70 260 L220 220 Z" fill="url(#hg1)"/></g>
+        <g class="float"><circle cx="150" cy="140" r="54" fill="url(#hg2)" opacity=".95"/></g>
+        <g class="float"><rect x="330" y="330" width="110" height="110" rx="28" fill="#0fa3a3" transform="rotate(12 385 385)" opacity=".95"/></g>
+        <g class="float"><path d="M120 400 a40 40 0 1 0 80 0 a40 40 0 1 0 -80 0" fill="#ffc53d"/></g>
+        <circle cx="260" cy="260" r="40" fill="url(#hg3)"/>
+        <circle cx="260" cy="260" r="14" fill="#14121f"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">Scroll</div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {% for i in range(0, 2) %}{% for v in about.values %}<span>{{ v.name }}</span>{% endfor %}<span>{{ site.tagline }}</span>{% endfor %}
+  </div>
+</div>
+
+<section class="section" id="what-we-do">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">{{ home.pillars_heading }}</p><h2>Creativity is a resource for development.</h2></div>
+      <p>{{ home.pillars_intro }}</p>
+    </div>
+    <div class="grid grid-3 reveal-stagger">
+      {% set accents = ["var(--flame-soft)", "var(--jac-soft)", "var(--river-soft)"] %}
+      {% for p in home.pillars %}
+      <a class="feature-card tilt" href="{{ p.url }}" style="--accent: {{ accents[loop.index0] }}">
+        <span class="icon-blob"><svg><use href="#i-{{ p.icon }}"/></svg></span>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.text }}</p>
+        <span class="link-arrow">Learn more<svg width="18" height="18"><use href="#i-arrow"/></svg></span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="impact-snapshot">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Impact so far</p><h2>Numbers that come from real rooms.</h2></div>
+      <a class="link-arrow" style="color:#fff" href="/impact/">See the full picture<svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="stats reveal-stagger">
+      {% set cols = ["var(--flame)", "var(--sun)", "var(--jac)", "var(--river)"] %}
+      {% for m in impact.headline_metrics %}
+      <div class="stat" style="--accent: {{ cols[loop.index0 % 4] }}">
+        <div class="stat-value" data-count="{{ m.value }}" data-suffix="{{ m.suffix }}">0</div>
+        <div class="stat-label">{{ m.label }}</div>
+        <p class="stat-note">{{ m.note }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% if impact.sample %}<p class="small" style="margin-top:1rem;color:#a7a3bd">Figures shown are sample values until REINA publishes its first audited numbers.</p>{% endif %}
+  </div>
+</section>
+
+<section class="section" id="values">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Core values</p><h2>Five things we will not trade away.</h2></div>
+      <p>Tap a value to read what it means in practice.</p>
+    </div>
+    <div class="values reveal-stagger">
+      {% set vcols = [["var(--flame-soft)","var(--flame-soft)"],["var(--jac-soft)","var(--jac-soft)"],["var(--sun-soft)","var(--sun-soft)"],["var(--river-soft)","var(--river-soft)"],["var(--flame-soft)","var(--sun-soft)"]] %}
+      {% for v in about.values %}
+      <button class="value" type="button" data-value aria-expanded="false" style="--accent: {{ vcols[loop.index0][0] }}; --accent-soft: {{ vcols[loop.index0][1] }}">
+        <span class="icon-blob"><svg><use href="#i-{{ v.icon }}"/></svg></span>
+        <span class="value-n">0{{ loop.index }}</span>
+        <h3>{{ v.name }}</h3>
+        <p>{{ v.short }}</p>
+        <span class="value-detail">{{ v.text }}</span>
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint" id="programs-preview">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Programs</p><h2>Where the work happens.</h2></div>
+      <a class="link-arrow" href="/programs/">All programs<svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="grid grid-3">
+      {% for p in collections.programs | featured | limit(3) %}{% include "partials/program-card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="theory-of-change">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Theory of change</p><h2>How a workshop becomes a livelihood.</h2></div>
+      <p>From inputs to long-term impact. Click a stage, or let it play.</p>
+    </div>
+    {% include "partials/stepper.njk" %}
+  </div>
+</section>
+
+<section class="section section-tint" id="voices">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Voices</p><h2>What people say about REINA.</h2></div>
+      {% if testimonials[0].sample %}<span class="sample-note">Sample quotes until real ones are added in the CMS</span>{% endif %}
+    </div>
+    {% include "partials/testimonials.njk" %}
+  </div>
+</section>
+
+<section class="section" id="latest">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">News and stories</p><h2>Latest from the community.</h2></div>
+      <a class="link-arrow" href="/news/">All news<svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="grid grid-3">
+      {% for p in collections.news | limit(3) %}{% include "partials/news-card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/social-feed.njk" %}
+
+<section class="section-tight" id="partners">
+  <div class="container">
+    <div class="section-head reveal"><div><p class="eyebrow">Partners</p><h2>Built with others.</h2></div><p>{{ partners.intro }}</p></div>
+    <div class="partners reveal-stagger">
+      {% for pt in partners.items %}<div class="partner">{% if pt.logo %}<img src="{{ pt.logo }}" alt="{{ pt.name }}" loading="lazy" />{% else %}<strong>{{ pt.name }}</strong>{% endif %}<span>{{ pt.kind }}</span></div>{% endfor %}
+    </div>
+    {% if partners.sample %}<p class="sample-note" style="margin-top:1rem">Sample partners. Replace with real logos in the CMS.</p>{% endif %}
+  </div>
+</section>
+
+<section class="section" id="get-involved">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div>
+        <h2>{{ home.cta_band.heading }}</h2>
+        <p>{{ home.cta_band.text }}</p>
+      </div>
+      <div class="btn-row">
+        {% for b in home.cta_band.buttons %}<a class="btn btn-{{ b.style }} btn-lg" href="{{ b.url }}" data-track="cta:band_{{ b.label | slug2 }}">{{ b.label }}</a>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" id="newsletter">
+  <div class="container">{% include "partials/newsletter.njk" %}</div>
+</section>

@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+---
+{%- set shareUrl = page.url | absolute -%}
+<article class="post">
+  <header class="post-header">
+    <div class="container container-narrow">
+      <p class="eyebrow"><a href="/news/">News</a>{% if kind %} · {{ kind }}{% endif %}{% if sample %} · <span class="sample-badge" title="This is sample content. Replace it in the CMS.">Sample article</span>{% endif %}</p>
+      <h1 class="h-display">{{ title }}</h1>
+      {% if summary %}<p class="lead">{{ summary }}</p>{% endif %}
+      <div class="post-meta">
+        <span><svg width="16" height="16"><use href="#i-calendar"/></svg><time datetime="{{ page.date | isoDate }}">{{ date_display or (page.date | readableDate) }}</time></span>
+        <span><svg width="16" height="16"><use href="#i-clock"/></svg>{{ content | readingTime }} min read</span>
+        {% if author %}<span><svg width="16" height="16"><use href="#i-user"/></svg>{{ author }}</span>{% endif %}
+      </div>
+      {% if topics %}<ul class="tag-list">{% for t in topics %}<li><a class="tag" href="/news/?topic={{ t | slug2 }}">{{ t }}</a></li>{% endfor %}</ul>{% endif %}
+    </div>
+    <div class="container post-cover">
+      <img src="{{ image or ('/assets/img/art/post-' ~ ((title | hue) % 6 + 1) ~ '.svg') }}" alt="{{ image_alt or '' }}" width="1200" height="640" />
+    </div>
+  </header>
+  <div class="container container-narrow">
+    <div class="prose">{{ content | safe }}</div>
+    {% include "partials/share.njk" %}
+    {% if author_contact %}<p class="small muted">Questions about this story? Contact {{ author }} at <a href="mailto:{{ author_contact }}">{{ author_contact }}</a>.</p>{% endif %}
+  </div>
+  {% set rel = collections.news | related(page.url, topics, 3) %}
+  {% if rel.length %}
+  <section class="section section-tint">
+    <div class="container">
+      <div class="section-head"><h2>More from REINA</h2><a class="link-arrow" href="/news/">All news<svg width="18" height="18"><use href="#i-arrow"/></svg></a></div>
+      <div class="grid grid-3">{% for p in rel %}{% include "partials/news-card.njk" %}{% endfor %}</div>
+    </div>
+  </section>
+  {% endif %}
+</article>

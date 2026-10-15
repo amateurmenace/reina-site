@@ -1,0 +1,43 @@
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="top" data-header>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="{{ site.name }} home">
+      <img class="brand-mark" src="/assets/brand/mark.svg" width="40" height="40" alt="" />
+      <span class="brand-text"><span class="brand-name">{{ site.name }}</span><span class="brand-tag">Youth-led · Zimbabwe</span></span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        {% for item in navigation.primary %}
+        <li><a href="{{ item.url }}" {% if page.url | isCurrent(item.url) %}aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" type="button" data-search-open aria-label="Search the site" title="Search (press /)">
+        <svg width="22" height="22"><use href="#i-search"/></svg>
+        <span class="kbd" aria-hidden="true">/</span>
+      </button>
+      <a class="btn btn-primary btn-sm header-donate" href="/donate/">Donate</a>
+      <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <svg class="ic-open" width="24" height="24"><use href="#i-menu"/></svg>
+        <svg class="ic-close" width="24" height="24"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav aria-label="Mobile">
+      <ul>
+        {% for item in navigation.primary %}
+        <li style="--i:{{ loop.index0 }}"><a href="{{ item.url }}" {% if page.url | isCurrent(item.url) %}aria-current="page"{% endif %}>{{ item.label }}<svg width="22" height="22"><use href="#i-arrow"/></svg></a></li>
+        {% endfor %}
+        <li style="--i:{{ navigation.primary.length }}"><a href="/donate/" class="is-accent">Donate<svg width="22" height="22"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+      <div class="mobile-nav-foot">
+        <p class="small">{{ site.tagline }}</p>
+        <div class="social-row">
+          {% for s in site.social %}<a href="{{ s.url }}" target="_blank" rel="noopener" aria-label="{{ s.name }}"><svg width="20" height="20"><use href="#i-{{ s.key }}"/></svg></a>{% endfor %}
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

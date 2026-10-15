@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+title: "Get involved"
+description: "Volunteer, mentor, partner, or join a REINA program. Every route leads to young people shaping their own future."
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Get involved</p>
+    <h1 class="h-display">Pick a door. They all lead in.</h1>
+    <p class="lead">Join a program, volunteer a skill, mentor a young creative, or partner as an organization. Tell us which, and we will take it from there.</p>
+  </div>
+</section>
+<section class="section-tight"><div class="container grid grid-4 reveal-stagger">
+  {% set routes = [
+    { "id": "join", "title": "Join a program", "text": "Free for young people in Zimbabwe. No equipment or experience needed.", "icon": "spark", "accent": "var(--flame-soft)" },
+    { "id": "volunteer", "title": "Volunteer", "text": "Facilitate, document, organize, or run logistics for a lab or showcase.", "icon": "hands", "accent": "var(--sun-soft)" },
+    { "id": "mentor", "title": "Mentor", "text": "Share a craft: visual arts, music, design, media, enterprise, or wellbeing.", "icon": "rise", "accent": "var(--jac-soft)" },
+    { "id": "partner", "title": "Partner", "text": "Venues, funding, outreach, skills, media. We co-design with partners.", "icon": "globe", "accent": "var(--river-soft)" }
+  ] %}
+  {% for r in routes %}<a class="feature-card tilt" href="#form" data-route="{{ r.id }}" style="--accent: {{ r.accent }}"><span class="icon-blob"><svg><use href="#i-{{ r.icon }}"/></svg></span><h3 id="{{ r.id }}">{{ r.title }}</h3><p>{{ r.text }}</p><span class="link-arrow">Start here<svg width="18" height="18"><use href="#i-arrow"/></svg></span></a>{% endfor %}
+</div></section>
+<section class="section" id="form"><div class="container contact-grid">
+  <div class="reveal">
+    <p class="eyebrow">Tell us about you</p>
+    <h2>One form, every route.</h2>
+    <p>We read every message and reply within a week. If it is urgent, call or WhatsApp us from the <a href="/contact/">contact page</a>.</p>
+    <div class="accordion" style="margin-top:1.5rem">{% for f in faq %}<details><summary>{{ f.q }}<svg width="18" height="18" style="transform:none"><use href="#i-chevron-down"/></svg></summary><div class="acc-body">{{ f.a }}</div></details>{% endfor %}</div>
+  </div>
+  <form class="form reveal" data-form="volunteer" data-email="{{ site.contact.email }}" data-subject="Get involved" data-success="Thank you. We will be in touch within a week." novalidate>
+    <input type="hidden" name="source" value="" /><input type="hidden" name="campaign" value="" />
+    <input class="honey" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <div class="field"><label for="gi-route">I want to</label>
+      <select id="gi-route" name="route" required>
+        <option value="join">Join a program</option><option value="volunteer">Volunteer</option><option value="mentor">Mentor</option><option value="partner">Partner as an organization</option><option value="donate">Support financially</option><option value="other">Something else</option>
+      </select></div>
+    <div class="form-row">
+      <div class="field"><label for="gi-name">Name</label><input id="gi-name" type="text" name="name" required autocomplete="name" /></div>
+      <div class="field"><label for="gi-email">Email</label><input id="gi-email" type="email" name="email" required autocomplete="email" /></div>
+    </div>
+    <div class="form-row">
+      <div class="field"><label for="gi-phone">Phone or WhatsApp <span class="muted">(optional)</span></label><input id="gi-phone" type="tel" name="phone" autocomplete="tel" /></div>
+      <div class="field"><label for="gi-location">Where are you based?</label><input id="gi-location" type="text" name="location" placeholder="e.g. Harare, Bulawayo, Mutare" /></div>
+    </div>
+    <div class="field"><label for="gi-program">Program of interest <span class="muted">(optional)</span></label>
+      <select id="gi-program" name="program"><option value="">Any</option>{% for p in collections.programs %}<option value="{{ p.data.title | slug2 }}">{{ p.data.title }}</option>{% endfor %}</select></div>
+    <div class="field"><label for="gi-skills">Skills, interests, or what you can offer</label><textarea id="gi-skills" name="message" required placeholder="A few lines is plenty."></textarea></div>
+    <label class="checkbox"><input type="checkbox" name="consent" required /> <span>I agree to REINA storing my details to respond to this request, as described in the <a href="/privacy/">privacy policy</a>.</span></label>
+    <button class="btn btn-primary btn-lg" type="submit">Send<svg><use href="#i-send"/></svg></button>
+    <p class="form-status" data-form-status></p>
+  </form>
+</div></section>
+<script>
+  // Route cards pre-select the dropdown; ?program= pre-selects the program.
+  document.addEventListener("DOMContentLoaded", function () {
+    var sel = document.getElementById("gi-route");
+    document.querySelectorAll("[data-route]").forEach(function (a) { a.addEventListener("click", function () { sel.value = a.dataset.route; }); });
+    try { var p = new URLSearchParams(location.search).get("program"); if (p) document.getElementById("gi-program").value = p; } catch (e) {}
+  });
+</script>

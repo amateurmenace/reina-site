@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+title: "Transparency"
+description: "REINA's annual reports, financial statements, registration and compliance details, and policies. Responsible stewardship, publicly documented."
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Transparency and accountability</p>
+    <h1 class="h-display">Open books.</h1>
+    <p class="lead">Annual reports, financial statements, registration details, and the policies we hold ourselves to. If something you need is missing, ask and we will publish it.</p>
+  </div>
+</section>
+<section class="section-tight"><div class="container">
+  <div class="section-head reveal"><div><p class="eyebrow">Reports and statements</p><h2>Published documents.</h2></div></div>
+  {% if collections.reports.length %}
+  <div class="doc-list reveal-stagger">{% for r in collections.reports %}{% include "partials/doc-row.njk" %}{% endfor %}</div>
+  {% else %}<p class="empty-state">Our first annual report will be published here.</p>{% endif %}
+</div></section>
+<section class="section section-tint" id="registration"><div class="container">
+  <div class="section-head reveal"><div><p class="eyebrow">Compliance and legal status</p><h2>Registration.</h2></div></div>
+  {% include "partials/registration.njk" %}
+</div></section>
+<section class="section"><div class="container">
+  <div class="section-head reveal"><div><p class="eyebrow">Policies</p><h2>The rules we follow.</h2></div></div>
+  <div class="grid grid-3 reveal-stagger">
+    {% for l in navigation.legal %}<a class="feature-card" href="{{ l.url }}" style="--accent: var(--paper-3)"><h3>{{ l.label }}</h3><span class="link-arrow">Read<svg width="18" height="18"><use href="#i-arrow"/></svg></span></a>{% endfor %}
+  </div>
+  <div class="grid grid-2" style="margin-top:2rem">
+    <div class="story-card"><h3>Safeguarding</h3><p>All facilitators and mentors are vetted and trained. Young people can report concerns to the youth council or the board directly, in confidence, at <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>.</p></div>
+    <div class="story-card"><h3>Financial controls</h3><p>Two signatories on every payment, a board-appointed auditor, and an annual report reconciled against the published allocation on the <a href="/donate/">donate page</a>.</p></div>
+  </div>
+</div></section>

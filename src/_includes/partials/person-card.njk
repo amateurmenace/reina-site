@@ -1,0 +1,11 @@
+<article class="person">
+  <div class="person-photo">{% if m.data.photo %}<img src="{{ m.data.photo }}" alt="Portrait of {{ m.data.name }}" loading="lazy" width="400" height="400" />{% else %}<span class="initials" aria-hidden="true">{{ m.data.name | initials }}</span>{% endif %}{% if m.data.sample %}<span class="status-pill" style="position:absolute;top:.8rem;left:.8rem;background:var(--sun)">Sample profile</span>{% endif %}</div>
+  <div class="person-body">
+    <h3>{{ m.data.name }}</h3>
+    <span class="person-role">{{ m.data.role }}</span>
+    {% if m.data.group %}<span class="small muted">{{ m.data.group }}</span>{% endif %}
+    <p class="person-bio">{{ m.data.summary }}</p>
+    {% if m.templateContent | plain %}<details><summary>Background<svg width="16" height="16"><use href="#i-chevron-down"/></svg></summary><div class="person-bio">{{ m.templateContent | safe }}</div></details>{% endif %}
+    {% if m.data.email or m.data.linkedin %}<div class="person-links">{% if m.data.email %}<a href="mailto:{{ m.data.email }}" aria-label="Email {{ m.data.name }}"><svg width="16" height="16"><use href="#i-mail"/></svg></a>{% endif %}{% if m.data.linkedin %}<a href="{{ m.data.linkedin }}" target="_blank" rel="noopener" aria-label="{{ m.data.name }} on LinkedIn"><svg width="16" height="16"><use href="#i-linkedin"/></svg></a>{% endif %}</div>{% endif %}
+  </div>
+</article>

@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+title: "Impact"
+description: "REINA's results: young people reached, workshops delivered, outcomes measured, and live engagement from the community. Data-driven, updated quarterly, audited annually."
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Impact</p>
+    <h1 class="h-display">What changes, measured.</h1>
+    <p class="lead">{{ impact.intro }}</p>
+    {% if impact.sample %}<p class="sample-note">Sample figures shown until REINA publishes its first audited numbers. Edit them in the CMS under Impact.</p>{% endif %}
+  </div>
+</section>
+<section class="section-tight"><div class="container">
+  <div class="stats reveal-stagger">
+    {% set cols = ["var(--flame)", "var(--sun)", "var(--jac)", "var(--river)"] %}
+    {% for m in impact.headline_metrics %}<div class="stat" style="--accent: {{ cols[loop.index0 % 4] }}"><div class="stat-value" data-count="{{ m.value }}" data-suffix="{{ m.suffix }}">0</div><div class="stat-label">{{ m.label }}</div><p class="stat-note">{{ m.note }}</p></div>{% endfor %}
+  </div>
+</div></section>
+<section class="section"><div class="container split" style="align-items:start">
+  <div class="reveal" data-reveal>
+    <p class="eyebrow">Outcomes</p><h2>Beyond attendance.</h2>
+    <div class="bars">{% for o in impact.outcome_metrics %}<div class="bar"><div class="bar-head"><span>{{ o.label }}</span><strong>{{ o.value }}{{ o.unit }}{% if not o.unit %} / {{ o.max }}{% endif %}</strong></div><div class="bar-track"><div class="bar-fill" style="--w: {{ o.value | pct(o.max) }}%"></div></div></div>{% endfor %}</div>
+  </div>
+  <div class="reveal" data-reveal>
+    <p class="eyebrow">Reach by year</p><h2>Growing on purpose.</h2>
+    {% set maxReach = 0 %}{% for r in impact.reach_by_year %}{% if r.value > maxReach %}{% set maxReach = r.value %}{% endif %}{% endfor %}
+    <div class="chart" role="img" aria-label="Young people reached per year: {% for r in impact.reach_by_year %}{{ r.year }} {{ r.value }}{% if not loop.last %}, {% endif %}{% endfor %}">
+      {% for r in impact.reach_by_year %}<div class="chart-col"><div class="chart-bar" style="--h: {{ r.value | pct(maxReach) }}%" data-value="{{ r.value | number }}"></div><span class="chart-label">{{ r.year }}</span></div>{% endfor %}
+    </div>
+  </div>
+</div></section>
+<section class="section section-dark" id="live"><div class="container">
+  <div class="section-head reveal"><div><p class="eyebrow">Live engagement</p><h2>Community participation, counted.</h2></div><p style="color:#c9c5dc">Shares, downloads, sign-ups, and comments across this site and our channels.{% if site.counters.sample %} Baselines are sample values until analytics is connected.{% endif %}</p></div>
+  <div class="engagement reveal-stagger">
+    <div class="engage stat" style="--accent: var(--flame)"><div class="stat-value" data-count="{{ site.counters.visitors_baseline }}" data-visitor-count-2>0</div><span>Website visitors</span></div>
+    <div class="engage stat" style="--accent: var(--sun)"><div class="stat-value" data-count="{{ site.counters.shares }}" data-engage="shares">0</div><span>Stories shared</span></div>
+    <div class="engage stat" style="--accent: var(--jac)"><div class="stat-value" data-count="{{ site.counters.downloads }}" data-engage="downloads">0</div><span>Reports downloaded</span></div>
+    <div class="engage stat" style="--accent: var(--river)"><div class="stat-value" data-count="{{ site.counters.signups }}" data-engage="signups">0</div><span>Sign-ups and messages</span></div>
+  </div>
+  <div class="grid grid-2" style="margin-top:2.5rem">
+    <div class="reveal" data-reveal>
+      <h3 style="color:#fff">Where visitors come from</h3>
+      <p class="small" style="color:#a7a3bd">Referral tracking: every shared link carries a source tag, so we know which channels and partners send people here. Updated from our analytics each month.</p>
+      <div class="bars">{% for s in impact.referral_sources %}<div class="bar"><div class="bar-head" style="color:#fff"><span>{{ s.source }}</span><strong>{{ s.pct }}%</strong></div><div class="bar-track" style="background:rgb(255 255 255 / .1)"><div class="bar-fill" style="--w: {{ s.pct }}%"></div></div></div>{% endfor %}</div>
+    </div>
+    <div class="reveal">
+      <h3 style="color:#fff">Help the numbers move</h3>
+      <p style="color:#c9c5dc">Every share routes someone new to a young creative's work. Use the share buttons on any story, or grab a tagged link for your own channel.</p>
+      <div class="btn-row"><a class="btn btn-primary" href="/news/">Share a story</a><a class="btn btn-ghost-light" href="/tools/link-builder/">Make a tagged link</a></div>
+    </div>
+  </div>
+</div></section>
+<section class="section"><div class="container">
+  <div class="section-head reveal"><div><p class="eyebrow">Stories behind the numbers</p><h2>Three outcomes, up close.</h2></div></div>
+  <div class="grid grid-3 reveal-stagger">{% for s in impact.stories %}<div class="story-card"><span class="tag">{{ s.tag }}</span><h3>{{ s.title }}</h3><p>{{ s.text }}</p></div>{% endfor %}</div>
+</div></section>
+<section class="section section-tint"><div class="container">
+  <div class="section-head reveal"><div><p class="eyebrow">Accountability</p><h2>Read the reports.</h2></div><a class="link-arrow" href="/transparency/">Transparency page<svg width="18" height="18"><use href="#i-arrow"/></svg></a></div>
+  <div class="doc-list reveal-stagger">{% for r in collections.reports | limit(3) %}{% include "partials/doc-row.njk" %}{% endfor %}</div>
+</div></section>

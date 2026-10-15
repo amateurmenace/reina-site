@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+title: "Team and governance"
+description: "REINA's board of directors, executive leadership, and team: who they are, what they bring, and how the organization is held accountable."
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Team and governance</p>
+    <h1 class="h-display">Youth-led, with grown-ups on the board.</h1>
+    <p class="lead">Programs are designed and run by young people. A board of directors holds the organization accountable for finances, safeguarding, and strategy.</p>
+  </div>
+</section>
+{% set groups = collections.team | allValues("group") %}
+{% for g in ["Board of directors", "Leadership", "Team"] %}
+{% set members = collections.team | where("group", g) %}
+{% if members.length %}
+<section class="section-tight {{ 'section-tint' if loop.index is even }}"><div class="container">
+  <div class="section-head reveal"><div><p class="eyebrow">{{ g }}</p><h2>{{ { "Board of directors": "Oversight and accountability.", "Leadership": "Executive leadership.", "Team": "The people in the room." }[g] }}</h2></div></div>
+  <div class="grid grid-4 reveal-stagger">{% for m in members %}{% include "partials/person-card.njk" %}{% endfor %}</div>
+</div></section>
+{% endif %}
+{% endfor %}
+<section class="section"><div class="container">
+  <div class="section-head reveal"><div><p class="eyebrow">Accountability structure</p><h2>How decisions get made.</h2></div></div>
+  <div class="grid grid-3 reveal-stagger">
+    <div class="feature-card" style="--accent: var(--flame-soft)"><h3>Youth council</h3><p>Program participants elect a council that sets priorities, reviews program design, and sits in on board meetings with voice.</p></div>
+    <div class="feature-card" style="--accent: var(--jac-soft)"><h3>Executive team</h3><p>Runs day-to-day operations, reports monthly to the board, and publishes quarterly impact updates on this site.</p></div>
+    <div class="feature-card" style="--accent: var(--river-soft)"><h3>Board of directors</h3><p>Approves budgets and policies, appoints auditors, oversees safeguarding, and signs off the annual report.</p></div>
+  </div>
+  <p class="small muted" style="margin-top:1.5rem">Policies, reports, and registration details are on the <a href="/transparency/">transparency page</a>.</p>
+</div></section>

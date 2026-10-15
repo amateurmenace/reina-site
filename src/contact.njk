@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+title: "Contact"
+description: "Reach REINA by phone, WhatsApp, email, or the contact form. Direct contacts for program leads and institutional giving."
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Contact</p>
+    <h1 class="h-display">Talk to a person, not a portal.</h1>
+    <p class="lead">We are a small youth-led team. Reach the right person directly, or send a message and we will route it.</p>
+  </div>
+</section>
+<section class="section-tight"><div class="container contact-grid">
+  <div class="reveal">
+    <ul class="contact-list">
+      <li><span class="icon-blob" style="--accent: var(--flame-soft)"><svg><use href="#i-pin"/></svg></span><div><strong>Visit</strong><a href="{{ site.contact.map_link }}" target="_blank" rel="noopener">{{ site.contact.address_line1 }}{% if site.contact.address_line2 %}<br>{{ site.contact.address_line2 }}{% endif %}</a><br><span class="small muted">{{ site.contact.hours }}</span></div></li>
+      <li><span class="icon-blob" style="--accent: var(--sun-soft)"><svg><use href="#i-phone"/></svg></span><div><strong>Call</strong><a href="tel:{{ site.contact.phone | replace(' ', '') }}">{{ site.contact.phone }}</a></div></li>
+      {% if site.contact.whatsapp %}<li><span class="icon-blob" style="--accent: var(--river-soft)"><svg><use href="#i-whatsapp"/></svg></span><div><strong>WhatsApp</strong><a href="https://wa.me/{{ site.contact.whatsapp }}?text={{ 'Hi REINA, ' | urlencode }}" target="_blank" rel="noopener">Message us on WhatsApp</a></div></li>{% endif %}
+      <li><span class="icon-blob" style="--accent: var(--jac-soft)"><svg><use href="#i-mail"/></svg></span><div><strong>Email</strong><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></div></li>
+    </ul>
+    <div class="social-row" style="margin:1.5rem 0">{% for s in site.social %}<a href="{{ s.url }}" target="_blank" rel="noopener" aria-label="{{ s.name }}" data-track="social:{{ s.key }}"><svg width="20" height="20"><use href="#i-{{ s.key }}"/></svg></a>{% endfor %}</div>
+    <div class="map"><iframe src="{{ site.contact.map_embed }}" title="Map showing REINA's location in {{ site.city }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <h3 style="margin-top:2.5rem">Program leads and giving contacts</h3>
+    <p class="small muted">Field-level contacts for partners, journalists, and institutional funders.</p>
+    <div class="leads">
+      {% for m in collections.team | where("contactable", true) %}
+      <div class="lead-row"><span class="avatar">{{ m.data.name | initials }}</span><div><strong>{{ m.data.name }}</strong><span>{{ m.data.role }}</span></div>{% if m.data.email %}<a href="mailto:{{ m.data.email }}">{{ m.data.email }}</a>{% endif %}</div>
+      {% endfor %}
+    </div>
+  </div>
+  <form class="form reveal" data-form="contact" data-email="{{ site.contact.email }}" data-subject="Website contact" data-success="Message received. We reply within a few working days." novalidate>
+    <h2 style="font-size:1.6rem">Send a message</h2>
+    <input type="hidden" name="source" value="" /><input type="hidden" name="campaign" value="" />
+    <input class="honey" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <div class="form-row">
+      <div class="field"><label for="c-name">Name</label><input id="c-name" type="text" name="name" required autocomplete="name" /></div>
+      <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" name="email" required autocomplete="email" /></div>
+    </div>
+    <div class="field"><label for="c-topic">Topic</label><select id="c-topic" name="topic"><option>General enquiry</option><option>Programs</option><option>Partnerships</option><option>Donations and grants</option><option>Media and press</option><option>Something else</option></select></div>
+    <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
+    <label class="checkbox"><input type="checkbox" name="consent" required /> <span>I agree to REINA storing my details to respond, as described in the <a href="/privacy/">privacy policy</a>.</span></label>
+    <button class="btn btn-primary btn-lg" type="submit">Send message<svg><use href="#i-send"/></svg></button>
+    <p class="form-status" data-form-status></p>
+  </form>
+</div></section>

@@ -1,0 +1,21 @@
+---
+permalink: /search.json
+eleventyExcludeFromCollections: true
+---
+{%- set items = [] -%}
+{%- for p in collections.searchable -%}
+  {%- set ptags = p.data.tags or [] -%}
+  {%- set type = "Page" -%}
+  {%- if "news" in ptags %}{% set type = p.data.kind or "News" %}{% elif "program" in ptags %}{% set type = "Program" %}{% endif -%}
+  {%- set body = "" -%}
+  {%- if p.inputPath.endsWith(".md") %}{% set body = p.rawInput | plain | truncate(700) %}{% else %}{% set body = (p.data.lead or "") ~ " " ~ (p.data.description or "") %}{% endif -%}
+  {%- set item = { "title": p.data.title or site.name, "url": p.url, "type": type, "summary": (p.data.summary or p.data.description or p.data.lead or "") | plain | truncate(140), "tags": (p.data.topics or []).concat([p.data.theme or "", p.data.kind or ""]), "body": body } -%}
+  {%- set items = (items.push(item), items) -%}
+{%- endfor -%}
+{%- for m in collections.team -%}
+  {%- set items = (items.push({ "title": m.data.name, "url": "/team/", "type": "Person", "summary": m.data.role ~ " · " ~ m.data.group, "tags": [m.data.group], "body": m.data.summary }), items) -%}
+{%- endfor -%}
+{%- for r in collections.reports -%}
+  {%- set items = (items.push({ "title": r.data.title, "url": "/transparency/", "type": "Report", "summary": r.data.kind ~ " · " ~ r.data.period, "tags": [r.data.kind], "body": r.data.summary or "" }), items) -%}
+{%- endfor -%}
+{{ items | jsonify | safe }}

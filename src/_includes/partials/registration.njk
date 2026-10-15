@@ -1,0 +1,10 @@
+{% set r = site.registration %}
+<dl class="reg-grid reveal-stagger">
+  <div class="reg"><dt>Legal name</dt><dd>{{ r.legal_name }}</dd></div>
+  <div class="reg"><dt>Entity type</dt><dd>{{ r.entity_type }}</dd></div>
+  <div class="reg"><dt>Registration number</dt>{% if r.registration_number %}<dd>{{ r.registration_number }}{% if r.registered_with %} · {{ r.registered_with }}{% endif %}</dd>{% else %}<dd class="pending">Pending publication</dd>{% endif %}</div>
+  <div class="reg"><dt>Tax status</dt>{% if r.tax_status %}<dd>{{ r.tax_status }}</dd>{% else %}<dd class="pending">Pending publication</dd>{% endif %}</div>
+  <div class="reg"><dt>Country</dt><dd>{{ site.country }}</dd></div>
+  <div class="reg"><dt>Founded</dt>{% if r.year_founded %}<dd>{{ r.year_founded }}</dd>{% else %}<dd class="pending">Pending publication</dd>{% endif %}</div>
+</dl>
+{% if r.note %}<p class="small muted" style="margin-top:1rem">{{ r.note }}</p>{% endif %}

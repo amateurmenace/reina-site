@@ -1,0 +1,100 @@
+{
+  "name": "REINA",
+  "full_name": "Resources of Empowerment through Innovation and New Artistry",
+  "tagline": "Unleash Potential, Inspire Change!",
+  "description": "REINA is a youth-led organization based in Zimbabwe. We create inclusive spaces that nurture creativity, foster collaboration, and encourage young voices to advocate for meaningful community development.",
+  "locale": "en_ZW",
+  "country": "Zimbabwe",
+  "city": "Harare",
+  "contact": {
+    "address_line1": "Harare, Zimbabwe",
+    "address_line2": "",
+    "phone": "+263 77 000 0000",
+    "whatsapp": "+263770000000",
+    "email": "hello@reina.org.zw",
+    "hours": "Monday to Friday, 9:00 to 17:00 CAT",
+    "map_embed": "https://www.openstreetmap.org/export/embed.html?bbox=30.95%2C-17.88%2C31.12%2C-17.76&layer=mapnik&marker=-17.8252%2C31.0335",
+    "map_link": "https://www.openstreetmap.org/?mlat=-17.8252&mlon=31.0335#map=12/-17.8252/31.0335"
+  },
+  "social": [
+    { "name": "Instagram", "key": "instagram", "url": "https://instagram.com/reina_zw", "handle": "@reina_zw" },
+    { "name": "Facebook", "key": "facebook", "url": "https://facebook.com/reinazimbabwe", "handle": "REINA Zimbabwe" },
+    { "name": "X", "key": "x", "url": "https://x.com/reina_zw", "handle": "@reina_zw" },
+    { "name": "LinkedIn", "key": "linkedin", "url": "https://linkedin.com/company/reina-zimbabwe", "handle": "REINA" },
+    { "name": "YouTube", "key": "youtube", "url": "https://youtube.com/@reina_zw", "handle": "@reina_zw" },
+    { "name": "TikTok", "key": "tiktok", "url": "https://tiktok.com/@reina_zw", "handle": "@reina_zw" }
+  ],
+  "registration": {
+    "legal_name": "Resources of Empowerment through Innovation and New Artistry (REINA)",
+    "entity_type": "Youth-led non-profit organization",
+    "registration_number": "",
+    "registered_with": "",
+    "tax_status": "",
+    "year_founded": "",
+    "note": "Official registration details are published here as soon as they are issued. Ask us for documentation at any time."
+  },
+  "analytics": {
+    "ga4_id": "",
+    "plausible_domain": "",
+    "goatcounter_code": ""
+  },
+  "forms": {
+    "contact_endpoint": "",
+    "newsletter_endpoint": "",
+    "volunteer_endpoint": ""
+  },
+  "counters": {
+    "visitors_baseline": 4820,
+    "label_visitors": "visitors so far",
+    "shares": 310,
+    "downloads": 128,
+    "signups": 212,
+    "comments": 94,
+    "sample": true
+  },
+  "social_feed": {
+    "heading": "Life at REINA",
+    "intro": "Fresh from our community. Follow along for workshops, showcases, and the young creatives behind them.",
+    "instagram_posts": [],
+    "gallery": [
+      { "image": "/assets/img/art/feed-1.svg", "alt": "Abstract artwork in orange and indigo representing a mural workshop", "caption": "Mural day in Mbare" },
+      { "image": "/assets/img/art/feed-2.svg", "alt": "Abstract artwork in gold and teal representing a music session", "caption": "Beat-making lab" },
+      { "image": "/assets/img/art/feed-3.svg", "alt": "Abstract artwork in purple and orange representing a youth forum", "caption": "Youth voices forum" },
+      { "image": "/assets/img/art/feed-4.svg", "alt": "Abstract artwork in teal and gold representing a showcase night", "caption": "Showcase night" },
+      { "image": "/assets/img/art/feed-5.svg", "alt": "Abstract artwork in orange and gold representing a design sprint", "caption": "Design sprint" },
+      { "image": "/assets/img/art/feed-6.svg", "alt": "Abstract artwork in indigo and teal representing a mentorship circle", "caption": "Mentorship circle" }
+    ]
+  },
+  "newsletter": {
+    "heading": "Stay in the loop",
+    "text": "A short monthly note on programs, open calls, and stories from young creatives across Zimbabwe. No spam, unsubscribe any time."
+  },
+  "donate": {
+    "stripe_onetime_url": "",
+    "stripe_monthly_url": "",
+    "paypal_me": "",
+    "paynow_url": "",
+    "mobile_money_name": "",
+    "mobile_money_number": "",
+    "bank_name": "",
+    "bank_account_name": "",
+    "bank_account_number": "",
+    "bank_branch": "",
+    "bank_swift": "",
+    "currency": "USD",
+    "one_time_amounts": [10, 25, 50, 100],
+    "monthly_amounts": [5, 10, 25, 50],
+    "impact_lines": [
+      { "amount": 10, "text": "supplies one young artist with materials for a full workshop series." },
+      { "amount": 25, "text": "covers a day of studio time for a creative skills lab." },
+      { "amount": 50, "text": "funds a mentorship pairing for a month." },
+      { "amount": 100, "text": "puts on a community showcase that reaches hundreds of people." }
+    ],
+    "allocation": [
+      { "label": "Programs and workshops", "pct": 72, "color": "var(--flame)" },
+      { "label": "Mentorship and stipends", "pct": 14, "color": "var(--sun)" },
+      { "label": "Operations", "pct": 9, "color": "var(--jac)" },
+      { "label": "Fundraising", "pct": 5, "color": "var(--river)" }
+    ]
+  }
+}

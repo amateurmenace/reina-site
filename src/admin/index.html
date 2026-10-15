@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>REINA · Content manager</title>
+  <link rel="icon" href="../assets/brand/favicon.svg" type="image/svg+xml" />
+  <style>
+    /* Small welcome card shown before login so editors know where they are. */
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Preview styles so the editor's live preview looks like the site.
+    CMS.registerPreviewStyle("../assets/css/main.css");
+    CMS.registerPreviewStyle(".frame-content{padding:2rem;max-width:760px;margin:0 auto}", { raw: true });
+  </script>
+</body>
+</html>

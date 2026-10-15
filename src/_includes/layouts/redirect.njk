@@ -1,0 +1,27 @@
+{%- set qs = "utm_source=" ~ (source or "social") ~ "&utm_medium=" ~ (medium or "social") ~ "&utm_campaign=" ~ (campaign or page.fileSlug) -%}
+{%- set dest = destination if (destination | isExternal) else (destination | absolute) -%}
+{%- set sep = "&" if "?" in dest else "?" -%}
+{%- set target = dest ~ sep ~ qs -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Redirecting to {{ site.name }}…</title>
+<meta name="robots" content="noindex" />
+<meta http-equiv="refresh" content="0; url={{ target }}" />
+<link rel="canonical" href="{{ dest }}" />
+<meta property="og:title" content="{{ og_title or (site.name ~ ' · ' ~ site.tagline) }}" />
+<meta property="og:description" content="{{ og_description or site.description }}" />
+<meta property="og:image" content="{{ '/assets/brand/og-default.png' | absolute }}" />
+<meta property="og:url" content="{{ dest }}" />
+<script>
+  (function(){
+    var t = {{ target | jsonify | safe }};
+    try { var r = document.referrer; if (r) { var h = new URL(r).hostname.replace(/^www\./,''); sessionStorage.setItem('reina_ref', h); } } catch(e){}
+    location.replace(t);
+  })();
+</script>
+<style>body{font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;color:#14121f}</style>
+</head>
+<body><p>Taking you to <a href="{{ target }}">{{ site.name }}</a>…</p></body>
+</html>

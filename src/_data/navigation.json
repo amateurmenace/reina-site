@@ -1,0 +1,45 @@
+{
+  "primary": [
+    { "label": "About", "url": "/about/" },
+    { "label": "Programs", "url": "/programs/" },
+    { "label": "Impact", "url": "/impact/" },
+    { "label": "News", "url": "/news/" },
+    { "label": "Get involved", "url": "/get-involved/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
+  "footer": [
+    {
+      "heading": "Organization",
+      "links": [
+        { "label": "About REINA", "url": "/about/" },
+        { "label": "Team and governance", "url": "/team/" },
+        { "label": "Transparency", "url": "/transparency/" },
+        { "label": "Mentions and press", "url": "/mentions/" },
+        { "label": "Contact", "url": "/contact/" }
+      ]
+    },
+    {
+      "heading": "Work",
+      "links": [
+        { "label": "Programs", "url": "/programs/" },
+        { "label": "Impact", "url": "/impact/" },
+        { "label": "News and stories", "url": "/news/" },
+        { "label": "Search", "url": "/search/" }
+      ]
+    },
+    {
+      "heading": "Take part",
+      "links": [
+        { "label": "Volunteer", "url": "/get-involved/#volunteer" },
+        { "label": "Partner with us", "url": "/get-involved/#partner" },
+        { "label": "Donate", "url": "/donate/" },
+        { "label": "Newsletter", "url": "/#newsletter" }
+      ]
+    }
+  ],
+  "legal": [
+    { "label": "Privacy policy", "url": "/privacy/" },
+    { "label": "Terms of service", "url": "/terms/" },
+    { "label": "Refund policy", "url": "/refunds/" }
+  ]
+}

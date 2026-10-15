@@ -1,0 +1,33 @@
+{
+  "about": "Resources of Empowerment through Innovation and New Artistry (REINA) is a youth-led organization based in Zimbabwe. We aim to create an inclusive space that nurtures creativity, fosters collaboration, and encourages young voices to advocate for meaningful community development.",
+  "mission": "To empower youth through creativity, innovation, and artistic expression, fostering social change and community development by providing resources, mentorship, and opportunities for collaboration.",
+  "vision": "A world where young people harness their creativity and innovative spirit through lifelong learning to effect positive change in their communities, leading to a more just, inclusive, and vibrant society.",
+  "motto": "Unleash Potential, Inspire Change!",
+  "values": [
+    { "name": "Creativity", "icon": "spark", "short": "Imagination is a resource.", "text": "We treat creative expression as infrastructure for change: art, design, music, and story are how young people make sense of the world and remake it." },
+    { "name": "Collaboration", "icon": "hands", "short": "Nothing great is built alone.", "text": "We work in circles, not hierarchies. Young people, mentors, families, and partners co-design everything we run." },
+    { "name": "Empowerment", "icon": "rise", "short": "Resources, not rescue.", "text": "We hand over tools, skills, and decision-making power so young people lead their own development and that of their communities." },
+    { "name": "Inclusivity", "icon": "circle", "short": "Every voice, every background.", "text": "Our spaces are safe and open to vulnerable and marginalized young people, regardless of gender, ability, income, or location." },
+    { "name": "Innovation", "icon": "bolt", "short": "New answers to old problems.", "text": "We prototype, test, and share new approaches to livelihoods, wellbeing, and leadership, and we learn out loud." }
+  ],
+  "aims": [
+    "To empower vulnerable and marginalized populations by fostering innovation, creativity, skills development, and inclusive livelihood opportunities that enhance self-reliance, resilience, and social inclusion."
+  ],
+  "objectives": [
+    { "title": "Platforms for expression", "text": "Creating platforms that foster artistic expression, innovation, and talent development among individuals and vulnerable groups." },
+    { "title": "Creativity as care", "text": "Utilizing creative and cultural initiatives as transformative tools for psychosocial support, social integration, and community empowerment." },
+    { "title": "A new generation of leaders", "text": "Cultivating a new generation of ethical, innovative, and socially conscious leaders capable of driving sustainable development within their communities." }
+  ],
+  "theory_of_change": [
+    { "stage": "Inputs", "title": "Resources and people", "text": "Youth facilitators, mentors, creative tools, safe spaces, and partner funding.", "items": ["Youth-led team", "Mentors and artists", "Studio and workshop space", "Materials and equipment"] },
+    { "stage": "Activities", "title": "What we run", "text": "Creative skills labs, mentorship circles, community showcases, and leadership incubators.", "items": ["Skills labs", "Mentorship", "Showcases", "Leadership incubator"] },
+    { "stage": "Outputs", "title": "What that produces", "text": "Trained young creatives, finished works, public events, and youth-led community projects.", "items": ["Trained participants", "Portfolios and products", "Public events", "Community projects"] },
+    { "stage": "Outcomes", "title": "What changes", "text": "Income and livelihoods, wellbeing and belonging, confidence to speak up and lead.", "items": ["New income streams", "Improved wellbeing", "Civic confidence", "Peer networks"] },
+    { "stage": "Impact", "title": "The long game", "text": "Resilient, self-reliant young people driving sustainable development in a more just, inclusive, and vibrant society.", "items": ["Self-reliance", "Social inclusion", "Sustainable development"] }
+  ],
+  "story": [
+    "REINA began as a group of young artists and organizers in Harare who kept running into the same wall: talent everywhere, resources almost nowhere. Workshops happened in borrowed rooms. Equipment was shared across neighborhoods. The work was good, but it was fragile.",
+    "So we built an organization designed to hold it. REINA pools resources, mentorship, and opportunities so that creative young people, especially those who are vulnerable or marginalized, can turn what they make into skills, livelihoods, and a voice in how their communities develop.",
+    "Everything we run is youth-led. Young people design the programs, facilitate the sessions, and sit on the decisions. Adults and partners support; they do not steer."
+  ]
+}

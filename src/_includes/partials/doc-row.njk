@@ -1,0 +1,5 @@
+<a class="doc" href="{{ r.data.file }}" target="_blank" rel="noopener" data-download="{{ r.data.title | slug2 }}">
+  <span class="icon-blob" style="--accent: var(--jac-soft)"><svg><use href="#i-download"/></svg></span>
+  <div><strong>{{ r.data.title }}</strong><span>{{ r.data.kind }} · {{ r.data.period }}{% if r.data.summary %} · {{ r.data.summary }}{% endif %}</span></div>
+  <span class="link-arrow">Download<svg width="16" height="16"><use href="#i-arrow"/></svg></span>
+</a>

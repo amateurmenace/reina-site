@@ -1,0 +1,22 @@
+<section class="section section-tint" id="community">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><p class="eyebrow">Community</p><h2>{{ site.social_feed.heading }}</h2><p>{{ site.social_feed.intro }}</p></div>
+      {% set ig = site.social | find("key", "instagram") %}
+      {% if ig %}<a class="btn btn-secondary btn-sm" href="{{ ig.url }}" target="_blank" rel="noopener" data-track="social:instagram_feed"><svg><use href="#i-instagram"/></svg>Follow {{ ig.handle }}</a>{% endif %}
+    </div>
+    {% if site.social_feed.instagram_posts and site.social_feed.instagram_posts.length %}
+    <div class="ig-embeds reveal">
+      {% for u in site.social_feed.instagram_posts %}
+      <blockquote class="instagram-media" data-instgrm-permalink="{{ u }}" data-instgrm-version="14" style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:0;width:100%"><a href="{{ u }}" target="_blank" rel="noopener">View this post on Instagram</a></blockquote>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="feed-grid reveal-stagger">
+      {% for g in site.social_feed.gallery %}
+      <figure class="feed-item"><img src="{{ g.image }}" alt="{{ g.alt }}" loading="lazy" width="400" height="400" /><figcaption>{{ g.caption }}</figcaption></figure>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,22 @@
+{
+  "name": "reina-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "REINA — Resources of Empowerment through Innovation and New Artistry. Youth-led, Zimbabwe. Static site (Eleventy) with a git-based CMS (Decap).",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site",
+    "cms": "npx decap-server",
+    "icons": "node scripts/make-icons.js"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-plugin-rss": "^3.0.0",
+    "luxon": "^3.7.2",
+    "markdown-it": "^15.0.2",
+    "markdown-it-anchor": "^10.0.0",
+    "sharp": "^0.34.3"
+  }
+}

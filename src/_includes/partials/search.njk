@@ -1,0 +1,19 @@
+<div class="search-modal" data-search-modal hidden>
+  <div class="search-backdrop" data-search-close></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search">
+    <form class="search-form" role="search" action="/search/" method="get" data-search-form>
+      <svg width="22" height="22" aria-hidden="true"><use href="#i-search"/></svg>
+      <input type="search" name="q" placeholder="Search programs, news, people…" aria-label="Search" autocomplete="off" data-search-input />
+      <button type="button" class="icon-btn" data-search-close aria-label="Close search"><svg width="22" height="22"><use href="#i-close"/></svg></button>
+    </form>
+    <div class="search-hints" data-search-hints>
+      <span class="small">Try:</span>
+      <button type="button" class="chip" data-search-try="workshops">workshops</button>
+      <button type="button" class="chip" data-search-try="mentorship">mentorship</button>
+      <button type="button" class="chip" data-search-try="volunteer">volunteer</button>
+      <button type="button" class="chip" data-search-try="annual report">annual report</button>
+    </div>
+    <ul class="search-results" data-search-results role="listbox" aria-label="Suggestions"></ul>
+    <div class="search-foot small"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </div>
+</div>

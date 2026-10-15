@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffc53d"/><stop offset="1" stop-color="#ff5a1f"/></linearGradient>
+    <radialGradient id="r1" cx="0.1" cy="0.1" r="0.6"><stop offset="0" stop-color="#ff5a1f" stop-opacity=".55"/><stop offset="1" stop-color="#ff5a1f" stop-opacity="0"/></radialGradient>
+    <radialGradient id="r2" cx="0.95" cy="0.9" r="0.6"><stop offset="0" stop-color="#7a5af8" stop-opacity=".6"/><stop offset="1" stop-color="#7a5af8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#14121f"/>
+  <rect width="1200" height="630" fill="url(#r1)"/><rect width="1200" height="630" fill="url(#r2)"/>
+  <circle cx="930" cy="300" r="230" stroke="rgba(255,255,255,.14)" stroke-width="2" stroke-dasharray="6 14" fill="none"/>
+  <path d="M930 110 L968 262 L1120 300 L968 338 L930 490 L892 338 L740 300 L892 262 Z" fill="url(#g)"/>
+  <circle cx="930" cy="300" r="22" fill="#14121f"/>
+  <circle cx="820" cy="170" r="42" fill="#7a5af8"/><rect x="1010" y="400" width="86" height="86" rx="22" fill="#0fa3a3" transform="rotate(12 1053 443)"/>
+  <text x="80" y="200" font-family="Bricolage Grotesque, Inter, Helvetica, Arial, sans-serif" font-weight="800" font-size="112" fill="#ffffff" letter-spacing="4">REINA</text>
+  <text x="84" y="270" font-family="Inter, Helvetica, Arial, sans-serif" font-weight="600" font-size="30" fill="#c9c5dc">Youth-led · Zimbabwe</text>
+  <text x="84" y="380" font-family="Bricolage Grotesque, Inter, Helvetica, Arial, sans-serif" font-weight="700" font-size="54" fill="#ffc53d">Unleash potential.</text>
+  <text x="84" y="446" font-family="Bricolage Grotesque, Inter, Helvetica, Arial, sans-serif" font-weight="700" font-size="54" fill="#ffffff">Inspire change.</text>
+  <text x="84" y="540" font-family="Inter, Helvetica, Arial, sans-serif" font-size="24" fill="#c9c5dc">Resources of Empowerment through Innovation and New Artistry</text>
+</svg>

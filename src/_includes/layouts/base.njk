@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% include "partials/head.njk" %}
+</head>
+<body class="{{ bodyClass }}">
+{% include "partials/icons.njk" %}
+{% include "partials/header.njk" %}
+<main id="main" tabindex="-1">
+{{ content | safe }}
+</main>
+{% include "partials/footer.njk" %}
+{% include "partials/search.njk" %}
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+{% if scripts %}{% for s in scripts %}<script src="{{ s }}" defer></script>{% endfor %}{% endif %}
+</body>
+</html>

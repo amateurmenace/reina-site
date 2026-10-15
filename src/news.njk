@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+title: "News and stories"
+description: "Announcements, open calls, events, and stories from REINA's youth-led creative community in Zimbabwe."
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">News and stories</p>
+    <h1 class="h-display">What is happening at REINA.</h1>
+    <p class="lead">Open calls, program updates, events, and stories from the young creatives we work with. Subscribe to the <a href="/feed.xml">feed</a> or the <a href="/#newsletter">newsletter</a>.</p>
+  </div>
+</section>
+<section class="section-tight" data-filter-root>
+  <div class="container">
+    <div class="filter-bar">
+      <div class="chip-row" role="group" aria-label="Filter by kind">
+        <button class="chip" type="button" data-filter="kind" data-value="all" aria-pressed="true">All</button>
+        {% for k in collections.news | allValues("kind") %}<button class="chip" type="button" data-filter="kind" data-value="{{ k | slug2 }}" aria-pressed="false">{{ k }}</button>{% endfor %}
+      </div>
+      <div class="field"><input type="search" placeholder="Filter by keyword…" aria-label="Filter news by keyword" data-filter-search /></div>
+    </div>
+    <div class="chip-row" role="group" aria-label="Filter by topic" style="margin-bottom:1.5rem">
+      <span class="small muted" style="align-self:center">Topics:</span>
+      <button class="chip" type="button" data-filter="topic" data-value="all" aria-pressed="true">Any</button>
+      {% for t in collections.news | allValues("topics") %}<button class="chip" type="button" data-filter="topic" data-value="{{ t | slug2 }}" aria-pressed="false">{{ t }}</button>{% endfor %}
+    </div>
+    <div class="grid grid-3">
+      {% for p in collections.news %}
+      <div data-filter-item data-kind="{{ p.data.kind | slug2 }}" data-topic="{% for t in p.data.topics %}{{ t | slug2 }} {% endfor %}">{% include "partials/news-card.njk" %}</div>
+      {% endfor %}
+    </div>
+    <p class="empty-state" data-filter-empty hidden>Nothing matches yet. Try another topic or keyword.</p>
+  </div>
+</section>
+<section class="section-tight"><div class="container">{% include "partials/newsletter.njk" %}</div></section>

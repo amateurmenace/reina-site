@@ -1,0 +1,12 @@
+{
+  "intro": "We work alongside community organizations, arts spaces, schools, and funders who share our belief in youth-led change.",
+  "items": [
+    { "name": "Community Arts Centre", "kind": "Venue partner" },
+    { "name": "Youth Fund Southern Africa", "kind": "Funding partner" },
+    { "name": "City Schools Network", "kind": "Outreach partner" },
+    { "name": "Creative Tech Hub", "kind": "Skills partner" },
+    { "name": "Local Radio Collective", "kind": "Media partner" },
+    { "name": "Women in Design ZW", "kind": "Mentorship partner" }
+  ],
+  "sample": true
+}

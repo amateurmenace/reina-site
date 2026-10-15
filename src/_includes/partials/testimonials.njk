@@ -1,0 +1,19 @@
+<div class="carousel reveal" data-carousel>
+  <div class="carousel-track" tabindex="0" aria-label="Testimonials, scroll horizontally">
+    {% for t in testimonials %}
+    <figure class="testimonial">
+      <svg class="q-mark" aria-hidden="true"><use href="#i-quote"/></svg>
+      <blockquote>{{ t.quote }}</blockquote>
+      <figcaption>
+        {% if t.photo %}<img class="avatar" src="{{ t.photo }}" alt="" width="44" height="44" />{% else %}<span class="avatar" aria-hidden="true">{{ t.name | initials }}</span>{% endif %}
+        <div class="who"><strong>{{ t.name }}</strong><span>{{ t.role }}</span></div>
+      </figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  <div class="carousel-controls">
+    <div class="carousel-dots" aria-hidden="true" style="margin-right:auto"></div>
+    <button class="prev" type="button" aria-label="Previous testimonial"><svg width="20" height="20"><use href="#i-arrow"/></svg></button>
+    <button class="next" type="button" aria-label="Next testimonial"><svg width="20" height="20"><use href="#i-arrow"/></svg></button>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+title: "Programs"
+description: "REINA's current and past programs: creative skills labs, mentorship circles, community showcases, and a youth leadership incubator across Zimbabwe."
+---
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Programs and projects</p>
+    <h1 class="h-display">Labs, circles, stages, and incubators.</h1>
+    <p class="lead">Every program is designed by young people, delivered by young people, and open to the young people who are usually left out. Here is the full portfolio, current and past, with timelines, partners, and funding.</p>
+  </div>
+</section>
+<section class="section-tight" data-filter-root>
+  <div class="container">
+    <div class="filter-bar">
+      <div class="chip-row" role="group" aria-label="Filter by status">
+        <button class="chip" type="button" data-filter="status" data-value="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="status" data-value="current" aria-pressed="false">Current</button>
+        <button class="chip" type="button" data-filter="status" data-value="upcoming" aria-pressed="false">Upcoming</button>
+        <button class="chip" type="button" data-filter="status" data-value="completed" aria-pressed="false">Completed</button>
+      </div>
+      <div class="chip-row" role="group" aria-label="Filter by theme">
+        {% for t in collections.programs | allValues("theme") %}<button class="chip" type="button" data-filter="theme" data-value="{{ t | slug2 }}" aria-pressed="false">{{ t }}</button>{% endfor %}
+        <button class="chip" type="button" data-filter="theme" data-value="all" aria-pressed="true">Any theme</button>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      {% for p in collections.programs %}
+      <div data-filter-item data-status="{{ p.data.status }}" data-theme="{{ p.data.theme | slug2 }}">{% include "partials/program-card.njk" %}</div>
+      {% endfor %}
+    </div>
+    <p class="empty-state" data-filter-empty hidden>No programs match those filters yet.</p>
+  </div>
+</section>
+<section class="section" id="expression"><div class="container"><div class="section-head reveal"><div><p class="eyebrow">How programs map to our objectives</p><h2>Three objectives, one portfolio.</h2></div></div>
+  <div class="grid grid-3 reveal-stagger">
+    {% set accents = ["var(--flame-soft)", "var(--jac-soft)", "var(--river-soft)"] %}
+    {% set anchors = ["expression", "wellbeing", "leadership"] %}
+    {% for o in about.objectives %}<div class="feature-card" id="{{ anchors[loop.index0] }}" style="--accent: {{ accents[loop.index0] }}"><p class="card-kicker">Objective {{ loop.index }}</p><h3>{{ o.title }}</h3><p>{{ o.text }}</p></div>{% endfor %}
+  </div></div></section>
+<section class="section section-tint"><div class="container"><div class="cta-band reveal"><div><h2>Have a program idea, or a space to host one?</h2><p>We co-design with partners and communities. Tell us what you are thinking.</p></div><div class="btn-row"><a class="btn btn-primary btn-lg" href="/get-involved/#partner">Partner with us</a><a class="btn btn-ghost-light btn-lg" href="/contact/">Contact</a></div></div></div></section>

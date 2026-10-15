@@ -1,0 +1,36 @@
+{
+  "sample": true,
+  "intro": "We measure what matters: who we reach, what they make, and what changes for them afterward. Figures are updated each quarter and audited in our annual report.",
+  "headline_metrics": [
+    { "value": 1250, "suffix": "+", "label": "Young people reached", "note": "Across workshops, labs, and showcases" },
+    { "value": 86, "suffix": "", "label": "Workshops and labs delivered", "note": "Since our first cohort" },
+    { "value": 14, "suffix": "", "label": "Communities served", "note": "Urban and rural Zimbabwe" },
+    { "value": 92, "suffix": "%", "label": "Report higher confidence", "note": "Post-program survey" }
+  ],
+  "outcome_metrics": [
+    { "label": "Participants who earned income from creative work within 6 months", "value": 38, "max": 100, "unit": "%" },
+    { "label": "Participants reporting improved wellbeing", "value": 81, "max": 100, "unit": "%" },
+    { "label": "Alumni now facilitating or mentoring", "value": 24, "max": 100, "unit": "%" },
+    { "label": "Youth-led community projects launched", "value": 19, "max": 25, "unit": "" }
+  ],
+  "reach_by_year": [
+    { "year": "2022", "value": 140 },
+    { "year": "2023", "value": 310 },
+    { "year": "2024", "value": 520 },
+    { "year": "2025", "value": 780 },
+    { "year": "2026", "value": 1250 }
+  ],
+  "referral_sources": [
+    { "source": "Instagram", "pct": 34 },
+    { "source": "WhatsApp shares", "pct": 22 },
+    { "source": "Partner websites", "pct": 17 },
+    { "source": "Search", "pct": 14 },
+    { "source": "Facebook", "pct": 8 },
+    { "source": "Other", "pct": 5 }
+  ],
+  "stories": [
+    { "title": "From borrowed brushes to a first commission", "text": "A mural participant from our first cohort now runs paid community wall projects with two peers.", "tag": "Livelihoods" },
+    { "title": "A beat lab that became a label", "text": "Four producers from the music lab formed a collective and released their first EP with mentor support.", "tag": "Creativity" },
+    { "title": "Speaking at the council", "text": "Youth forum graduates presented a community arts plan to local leaders, and it was adopted.", "tag": "Leadership" }
+  ]
+}

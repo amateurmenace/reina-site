@@ -1,0 +1,24 @@
+<div class="stepper-wrap reveal" data-stepper>
+  <div class="stepper" role="tablist" aria-label="Theory of change stages">
+    {% for s in about.theory_of_change %}
+    <button class="step" role="tab" id="toc-tab-{{ loop.index }}" aria-controls="toc-panel-{{ loop.index }}" aria-selected="{{ 'true' if loop.first else 'false' }}" data-stage="{{ s.stage }}">
+      <span class="step-dot">{{ loop.index }}</span>
+      <span class="step-label">{{ s.stage }}</span>
+    </button>
+    {% endfor %}
+  </div>
+  {% for s in about.theory_of_change %}
+  <div class="step-panel" role="tabpanel" id="toc-panel-{{ loop.index }}" aria-labelledby="toc-tab-{{ loop.index }}" {% if not loop.first %}hidden{% endif %}>
+    <div>
+      <p class="eyebrow">{{ s.stage }}</p>
+      <h3>{{ s.title }}</h3>
+      <p>{{ s.text }}</p>
+    </div>
+    <ul class="step-items">{% for it in s.items %}<li><svg width="18" height="18"><use href="#i-check"/></svg>{{ it }}</li>{% endfor %}</ul>
+  </div>
+  {% endfor %}
+  <div class="step-nav">
+    <button class="btn btn-ghost btn-sm" type="button" data-step-prev><svg style="transform:rotate(180deg)"><use href="#i-arrow"/></svg>Previous</button>
+    <button class="btn btn-secondary btn-sm" type="button" data-step-next>Next stage<svg><use href="#i-arrow"/></svg></button>
+  </div>
+</div>
