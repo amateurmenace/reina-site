@@ -98,9 +98,10 @@ Decap CMS at `/admin/` uses the GitHub backend, so editors log in with GitHub ac
 
 One-time setup:
 1. Create a free Netlify account and a project called **reina-cms** (it only needs to exist; it can forward to the live site). `src/admin/config.yml` points at it with `site_domain: reina-cms.netlify.app`.
-2. In GitHub: **Settings → Developer settings → OAuth Apps → New OAuth App.** Name `REINA CMS`, homepage = the live site URL, callback URL `https://api.netlify.com/auth/done`. Copy the Client ID, generate a client secret.
-3. In Netlify: **reina-cms → Project configuration → Access & security → OAuth → Install provider → GitHub**, paste the ID and secret.
-4. Invite each editor to this GitHub repo as a collaborator. They log in at `/admin/` with GitHub.
+2. In GitHub: **Settings → Developer settings → OAuth Apps → New OAuth App.** Name `REINA CMS`, homepage = the live site URL, redirect URI (callback URL) `https://api.netlify.com/auth/done`, and leave **Expire user access tokens** unticked. Copy the Client ID, generate a client secret.
+3. In Netlify: **reina-cms → Project configuration → Security → OAuth → Install provider → GitHub**, paste the ID and secret.
+4. In Netlify: **reina-cms → Domain management → Add a domain → Add a domain you already own**, enter the host the admin page runs on (`amateurmenace.github.io` today), then **Verify** and **Add domain**. Netlify only hands a login back to addresses on this list. Without it the sign-in window stops on "Authorized" and the admin never opens. The "Pending DNS verification" and certificate warnings Netlify shows afterwards are expected, because DNS never points there.
+5. Invite each editor to this GitHub repo as a collaborator. They log in at `/admin/` with GitHub.
 
 Until that is done, anyone with the repo can edit locally: `npm run dev` plus `npm run cms`, then open `http://localhost:8089/admin/`.
 
@@ -108,7 +109,7 @@ Until that is done, anyone with the repo can edit locally: `npm run dev` plus `n
 
 Pushes to `main` build and deploy through `.github/workflows/pages.yml`. In the repo's **Settings → Pages**, set the source to **GitHub Actions** once.
 
-The site is served at `https://amateurmenace.github.io/reina-site/` until a custom domain is added. To use a domain, add a `CNAME` file in the repo root containing it (e.g. `reina.org.zw`), point the domain's DNS at GitHub Pages, and update `site_url`, `display_url`, and `logo_url` in `src/admin/config.yml`. The build detects the `CNAME` and switches to root URLs automatically.
+The site is served at `https://amateurmenace.github.io/reina-site/` until a custom domain is added. To use a domain, add a `CNAME` file in the repo root containing it (e.g. `reina.org.zw`), point the domain's DNS at GitHub Pages, and update `site_url`, `display_url`, and `logo_url` in `src/admin/config.yml`. The build detects the `CNAME` and switches to root URLs automatically. Also add the new domain to the **reina-cms** Netlify project (CMS logins, step 4), or GitHub logins at `/admin/` will stop on "Authorized".
 
 ## Project layout
 
